@@ -96,6 +96,67 @@ namespace ft {
             const_iterator end() const {
                 return(const_iterator(_vector + _size));
             };
+        // Returns a reverse iterator pointing to the last element in the vector 
+            reverse_iterator rbegin() {
+                return(reverse_iterator(_vector + _size - 1));
+            };
+            const_reverse_iterator rbegin() const {
+                return(const_reverse_iterator(_vector + _size - 1));
+            };
+        // Returns a reverse iterator pointing to the theoretical element preceding the first element in the vector (which is considered its reverse end). 
+            reverse_iterator rend() {
+                return(reverse_iterator(_vector - 1));
+            };
+            const_reverse_iterator rend() const {
+                return(const_reverse_iterator(_vector - 1));
+            };
+        // Returns a const_iterator pointing to the first element in the container. 
+            const_iterator cbegin() const noexcept {
+                return(iterator(_vector));
+            };
+        // Returns a const_iterator pointing to the past-the-end element in the container.
+            const_iterator cend() const noexcept {
+                return(iterator(_vector + _size));
+            };
+        // Returns a const_reverse_iterator pointing to the last element in the container
+            const_reverse_iterator crbegin() const noexcept {
+                return(const_reverse_iterator(_vector + _size - 1));
+            };
+        // Returns a const_reverse_iterator pointing to the theoretical element preceding the first element in the container
+            const_reverse_iterator crend() const noexcept {
+                return(const_reverse_iterator(_vector - 1));
+            };
+        //capacity
+        //Returns the number of elements in the vector.
+            size_type size() const {
+                return (_size);
+            };
+        // Returns the maximum number of elements that the vector can hold.
+            size_type max_size() const {
+                return(allocator_type().max_size());
+            };
+        // Resizes the container so that it contains n elements.
+            void resize (size_type n, value_type val = value_type()) {
+                while (n < _size)
+                   _vector = _vector.pop_back();
+                while (n < _size)
+                   _vector = _vector.push_back(val);
+            };
+        // Returns the size of the storage space currently allocated for the vector, expressed in terms of elements.
+            size_type capacity() const {
+                return(_size);
+            };
+        // Returns whether the vector is empty
+            bool empty() const {
+                if (_size == 0)
+                    return(true);
+                return(false); 
+            };
+        //Requests that the vector capacity be at least enough to contain n elements.
+            void reserve (size_type n) {
+                
+            };
+
     }
 
 }
