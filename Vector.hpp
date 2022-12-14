@@ -222,7 +222,13 @@ namespace ft {
                     throw std::out_of_range();
                 return *(_vector + _size - 1);
             };
-
+        // Returns a direct pointer to the memory array used internally by the vector to store its owned elements
+            value_type* data() noexcept {
+                return(_vector);
+            };
+            const value_type* data() const noexcept {
+                return(_vector);
+            };
     };
 }
 
