@@ -41,7 +41,7 @@ namespace ft {
         // (1) empty container constructor (default constructor)
         // Constructs an empty container, with no elements.
             explicit vector(const allocator_type& alloc = allocator_type()) {
-                _allocator = allocator;
+                _allocator = alloc;
                 _vector = _allocator.allocate(0);
                 _size = 0;
             };
@@ -154,63 +154,54 @@ namespace ft {
             };
         //Requests that the vector capacity be at least enough to contain n elements.
             void reserve (size_type n) {
-                
+                if (v.capacity() >= n)
+                    return;
+                size_type temp_cap = _capacity;
+                _capacity = n;
+                T tmp = _vector;
+                &_vector = _alloc.allocate(_capacity);
+                for (size_type i = 0; i < _size; ++i)
+                    _vector + i = tmp + i;
+                for(T it = tmp; it != tmp + _size; ++it)
+                        _alloc.destroy(it);
+                if (temp_cap > 0)
+                    _alloc.deallocate(tmp, temp_cap);
+            };
+        // Requests the container to reduce its capacity to fit its size.
+            void shrink_to_fit() {
+                size_type i;
+				if (_capacity > _size) {
+					i = _size;
+					_Allocator.destroy(_content + (_size));
+					_Allocator.deallocate(_content + (_size), _capacity - _size);
+					_capacity = _size;
+				}
+            };
+        //element access
+        // Returns a reference to the element at position n in the vector container.
+            reference operator[] (size_type n) {
+                if (n > _size)
+                    throw std::out_of_range();
+                return ((_vector + n));
+            };
+            const_reference operator[] (size_type n) const {
+                if (n > _size)
+                    throw std::out_of_range();
+                return ((_vector + n));
+            };
+        // Returns a reference to the element at position n in the vector.
+            reference at (size_type n) {
+                if (n >= _size)
+                    throw std::out_of_range();
+                return ((_vector + n));
+            };
+            const_reference at (size_type n) const {
+                if (n >= _size)
+                    throw std::out_of_range();
+                return ((_vector + n));
             };
 
-    }
-
+    };
 }
-
-// Member functions
-// (constructor)	Construct vector (public member function)
-// (destructor)	Vector destructor (public member function)
-// operator=	Assign content (public member function)
-
-// Iterators:
-// begin	Return iterator to beginning (public member function)
-// end	Return iterator to end (public member function)
-// rbegin	Return reverse iterator to reverse beginning (public member function)
-// rend	Return reverse iterator to reverse end (public member function)
-// cbegin	Return const_iterator to beginning (public member function)
-// cend	Return const_iterator to end (public member function)
-// crbegin	Return const_reverse_iterator to reverse beginning (public member function)
-// crend	Return const_reverse_iterator to reverse end (public member function)
-
-// Capacity:
-// size	Return size (public member function)
-// max_size	Return maximum size (public member function)
-// resize	Change size (public member function)
-// capacity	Return size of allocated storage capacity (public member function)
-// empty	Test whether vector is empty (public member function)
-// reserve	Request a change in capacity (public member function)
-// shrink_to_fit	Shrink to fit (public member function)
-
-// Element access:
-// operator[]	Access element (public member function)
-// at	Access element (public member function)
-// front	Access first element (public member function)
-// back	Access last element (public member function)
-// data	Access data (public member function)
-
-// Modifiers:
-// assign	Assign vector content (public member function)
-// push_back	Add element at the end (public member function)
-// pop_back	Delete last element (public member function)
-// insert	Insert elements (public member function)
-// erase	Erase elements (public member function)
-// swap	Swap content (public member function)
-// clear	Clear content (public member function)
-// emplace	Construct and insert element (public member function)
-// emplace_back	Construct and insert element at the end (public member function)
-
-// Allocator:
-// get_allocator	Get allocator (public member function)
-
-// Non-member function overloads
-// relational operators	Relational operators for vector (function template)
-// swap	Exchange contents of vectors (function template)
-
-// Template specializations
-// vector<bool>	Vector of bool (class template specialization)
 
 #endif
