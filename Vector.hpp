@@ -182,23 +182,30 @@ namespace ft {
             reference operator[] (size_type n) {
                 if (n > _size)
                     throw std::out_of_range();
-                return ((_vector + n));
+                return (*(_vector + n));
             };
             const_reference operator[] (size_type n) const {
                 if (n > _size)
                     throw std::out_of_range();
-                return ((_vector + n));
+                return (*(_vector + n));
             };
         // Returns a reference to the element at position n in the vector.
             reference at (size_type n) {
-                if (n >= _size)
+                if (n >= _size || n < 0)
                     throw std::out_of_range();
-                return ((_vector + n));
+                return (*(_vector + n));
             };
             const_reference at (size_type n) const {
-                if (n >= _size)
+                if (n >= _size || n < 0)
                     throw std::out_of_range();
-                return ((_vector + n));
+                return (*(_vector + n));
+            };
+        // Returns a reference to the first element in the vector.
+            reference front() {
+                return
+            };
+            const_reference front() const {
+
             };
 
     };
