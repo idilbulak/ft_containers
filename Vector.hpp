@@ -169,7 +169,13 @@ namespace ft {
             };
         // Requests the container to reduce its capacity to fit its size.
             void shrink_to_fit() {
-                
+                size_type i;
+				if (_vector.capacity() > _size) {
+					i = _size;
+					_Allocator.destroy(_vector + (_size));
+					_Allocator.deallocate(_vector + (_size), _vector.capacity() - _size);
+					_vector.capacity() = _size;
+				}
             };
         //element access
         // Returns a reference to the element at position n in the vector container.
