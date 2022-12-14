@@ -202,10 +202,11 @@ namespace ft {
             };
         // Returns a reference to the first element in the vector.
             reference front() {
-                return
+                return (*(_vector));
             };
             const_reference front() const {
-
+                return (*(_vector));
+                
             };
 
     };
