@@ -202,11 +202,21 @@ namespace ft {
             };
         // Returns a reference to the first element in the vector.
             reference front() {
+                if (empty())
+                    throw std::out_of_range();
                 return (*(_vector));
             };
             const_reference front() const {
+                if (empty())
+                    throw std::out_of_range();
                 return (*(_vector));
-                
+            };
+        // Returns a reference to the last element in the vector.
+            reference back() {
+
+            };
+            const_reference back() const {
+
             };
 
     };
