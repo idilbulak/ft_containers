@@ -154,7 +154,7 @@ namespace ft {
             };
         //Requests that the vector capacity be at least enough to contain n elements.
             void reserve (size_type n) {
-                if (v.capacity() >= n)
+                if (_vector.capacity() >= n)
                     return;
                 size_type temp_cap = _capacity;
                 _capacity = n;
@@ -169,13 +169,7 @@ namespace ft {
             };
         // Requests the container to reduce its capacity to fit its size.
             void shrink_to_fit() {
-                size_type i;
-				if (_capacity > _size) {
-					i = _size;
-					_Allocator.destroy(_content + (_size));
-					_Allocator.deallocate(_content + (_size), _capacity - _size);
-					_capacity = _size;
-				}
+                
             };
         //element access
         // Returns a reference to the element at position n in the vector container.
