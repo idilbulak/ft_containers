@@ -213,10 +213,14 @@ namespace ft {
             };
         // Returns a reference to the last element in the vector.
             reference back() {
-
+                if (empty())
+                    throw std::out_of_range();
+                return *(_vector + _size - 1);
             };
             const_reference back() const {
-
+                if (empty())
+                    throw std::out_of_range();
+                return *(_vector + _size - 1);
             };
 
     };
