@@ -2,8 +2,8 @@
 # define VECTOR_HPP
 
 #include <memory>
-#include "iterators/random_access_iterator.hpp"
-#include "iterators/reverse_iterator.hpp"
+#include "../iterators/random_access_iterator.hpp"
+#include "../iterators/reverse_iterator.hpp"
 
 namespace ft {
     template <class T, class Alloc = std::allocator<T> >
