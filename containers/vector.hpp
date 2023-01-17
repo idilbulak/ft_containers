@@ -4,6 +4,7 @@
 #include <memory>
 #include "../iterators/random_access_iterator.hpp"
 #include "../iterators/reverse_iterator.hpp"
+#include <iostream>
 
 namespace ft {
     template <class T, class Alloc = std::allocator<T> >
@@ -61,8 +62,8 @@ namespace ft {
 			void resize(size_type n, value_type val = value_type()) {
 				while (n < _size)
 					pop_back();
-				if (n > _size)
-					insert(end(), (n - _size), val);}
+				while (n > _size)
+					push_back(val);}
 			size_type capacity() const {return (_capacity);}
 			bool	empty(void) const {return (_size == 0);}
 			void reserve(size_type n) {
@@ -140,12 +141,15 @@ namespace ft {
 					else
 						break;}
 				int i = 0;
-				for (iterator it = position; it != end(); ++it) {
+				for (iterator it = position; it != end(); ++it)
+				{
 					_alloc.construct(&_vecptr[_size + n - i], _vecptr[_size - i]);
-					++i;}
+					++i;
+				}
 				for (; i < 0; --i)
 					_vecptr[_size - i] = val;
-				_size += n;}
+				_size += n;
+				_size++;}
 			template <class InputIterator>
 			void insert(iterator position, InputIterator first, InputIterator last) {
 				int	n = 0;
