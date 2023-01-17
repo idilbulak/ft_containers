@@ -41,10 +41,10 @@ namespace ft {
 				assign(first, last);}
 			vector(const vector& other): _vecptr(nullptr), _size(0), _capacity(0) {*this = other;}
             // destructor
-			~vector() {_alloc.deallocate(_vecptr, _capacity + 1);}
+			~vector() {_alloc.deallocate(_vecptr, _capacity);}
             // copy assignment
 			vector&	operator=(const vector<T>& vec) {
-				_alloc.deallocate(_vecptr, _capacity + 1);
+				_alloc.deallocate(_vecptr, _capacity);
 				assign(vec.begin(), vec.end());
 				return (*this);}
             // iterators
@@ -75,11 +75,10 @@ namespace ft {
 				_alloc.deallocate(_vecptr, _capacity + 1);
 				_vecptr = tmp;
 				_capacity = n;}
-            void shrink_to_fit() {
-				if (_vecptr.capacity() > _size) {
-					// _allocdestroy(_vecptr + (_size));
-					_alloc.deallocate(_vecptr + (_size), _vecptr.capacity() - _size);
-					_capacity = _size;}}
+            // void shrink_to_fit() {
+			// 	if (_capacity > _size)
+			// 		_alloc.destroy(_vecptr + _size);
+			// 		_capacity = _size;}
             // element access
 			reference operator[](size_type n) {return (_vecptr[n]);}
 			const_reference operator[](size_type n) const {return (_vecptr[n]);}
