@@ -20,7 +20,7 @@ void iterate_print(ft::vector<T> &vector)
 
 int main (void)
 {
-	std::cout << "\033[1;31m=============constructors=============\033[0m" << std::endl;
+	std::cout << "\033[1;31m_____________constructor_____________\033[0m" << std::endl;
 
 	std::cout << "\033[32mcreating empty vector of ints..\033[0m" << std::endl;
 	ft::vector<int> first;
@@ -28,7 +28,7 @@ int main (void)
 	std::cout << "if_empty: " << std::boolalpha << first.empty() << std::endl;
 	std::cout << "size: " << first.size() << std::endl;
 
-	std::cout << "\033[32mcreating four ints with value 100..\033[0m" << std::endl;
+	std::cout << "\033[32mcreating vector with four ints with value 100..\033[0m" << std::endl;
 	ft::vector<int> second ((unsigned int)4,100);
 	std::cout << "[second]" << std::endl;
 	std::cout << "if_empty: " << std::boolalpha << second.empty() << std::endl;
@@ -56,6 +56,33 @@ int main (void)
 	std::cout << "if_empty: " << std::boolalpha << fifth.empty() << std::endl;
 	std::cout << "size: " << fifth.size() << std::endl;
 	iterate_print(fifth);
+
+	std::cout << "\033[1;31m_____________operator=_____________\033[0m" << std::endl;
+	ft::vector<int> foo ((unsigned int)3,0);
+	ft::vector<int> bar;
+	bar = foo;
+	foo = ft::vector<int>();
+	std::cout << "Size of foo: " << int(foo.size()) << "(should be 0)" << '\n';
+	std::cout << "Size of bar: " << int(bar.size()) << "(should be 3)" << '\n';
 	
+	std::cout << "\033[1;31m_____________capacity_____________\033[0m" << std::endl;
+	ft::vector<int> myvector;
+	for (int i=1; i<=10; i++) myvector.push_back(i);
+	iterate_print(myvector);
+	std::cout << "size: " << myvector.size() << std::endl;
+	std::cout << "max_size: " << myvector.max_size() << std::endl;
+	std::cout << "capacity: " << myvector.capacity() << std::endl;
+	std::cout << "if_empty: " << std::boolalpha << myvector.empty() << std::endl;
+	myvector.resize(5);
+	std::cout << "after resize(5), size: " << myvector.size() << std::endl;
+	iterate_print(myvector);
+	myvector.resize(8, 100);
+	std::cout << "after resize(8, 100), size: " << myvector.size() << std::endl;
+	iterate_print(myvector);
+	myvector.resize(12);
+	std::cout << "after resize(12), size: " << myvector.size() << std::endl;
+	iterate_print(myvector);
+
+
 	return (0);
 }
